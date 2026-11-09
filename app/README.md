@@ -57,6 +57,25 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
+## Error responses
+
+The global exception filter returns errors in this format:
+
+```json
+{
+  "status": 400,
+  "message": "Validation failed",
+  "details": {
+    "email": ["email must be an email"]
+  }
+}
+```
+
+Validation details are grouped by field. Missing resources return `404`,
+duplicate keys and deletions blocked by dependents return `409`, missing
+foreign-key references return `422`, and unexpected errors return a generic
+`500` response without database or stack-trace details.
+
 ## Deployment
 
 When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.

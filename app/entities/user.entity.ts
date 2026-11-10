@@ -1,8 +1,11 @@
+import { Store } from '@/entities/store.entity';
 import { Role } from '@/modules/users/enums/role.enum';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -33,15 +36,15 @@ export class User {
   @Column({ type: 'enum', enum: Role, default: Role.CUSTOMER })
   role!: Role;
 
-  /**
-  TODO: somente se pedido, classes Store, Address e Card e relações com users
   @Column({ type: 'number' })
   storeId!: number;
 
-  @OneToOne(() => Store)
+  @OneToOne(() => Store, { nullable: true })
   @JoinColumn({ name: 'storeId', referencedColumnName: 'id' })
   store?: Store;
 
+  /**
+  TODO: somente se pedido, classes Store, Address e Card e relações com users
   @OneToMany(() => Address, (address) => address.user)
   addresses?: Address[];
 

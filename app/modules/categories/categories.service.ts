@@ -92,7 +92,19 @@ export class CategoriesService {
     return this.categoriesRepository.save(categoryResponse);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} category`;
+  async remove(id: number) {
+    const categoryResponse: Category = await this.findOne(id);
+
+    if (!categoryResponse) {
+      throw new NotFoundException(`Categoria não foi encontrada`);
+    }
+
+    const response = await this.categoriesRepository.delete(id);
+
+    if (!response.affected) {
+      throw new ConflictException(`Não foi possível remover a categoria`);
+    }
+
+    return `Categoria removida com sucesso`;
   }
 }

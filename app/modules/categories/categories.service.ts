@@ -1,7 +1,11 @@
 import { PaginationResponse } from '@/common/types/pagination-response.type';
 import { Category } from '@/entities/category.entity';
 import { QueryCategoryDto } from '@/modules/categories/dto/query-category.dto';
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  ConflictException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateCategoryDto } from './dto/create-category.dto';
@@ -19,8 +23,20 @@ export class CategoriesService {
     readonly categoriesRepository: Repository<Category>,
   ) {}
 
-  create(category: CreateCategoryDto) {
-    return 'This action adds a new category';
+  async create(category: CreateCategoryDto) {
+    const titleRegistered = await this.categoriesRepository.exists({
+      where: { title: category.title },
+    });
+
+    if (titleRegistered) {
+      throw new ConflictException(
+        `A categoria '${category.title}' já foi cadastrada`,
+      );
+    }
+
+    const newCategory = this.categoriesRepository.create(category);
+
+    return this.categoriesRepository.save(newCategory);
   }
 
   async query(query: QueryCategoryDto) {
@@ -64,8 +80,16 @@ export class CategoriesService {
     return category;
   }
 
-  update(id: number, category: UpdateCategoryDto) {
-    return `This action updates a #${id} category`;
+  async update(id: number, category: UpdateCategoryDto) {
+    const categoryResponse: Category | null = await this.findOne(id);
+
+    if (!categoryResponse) {
+      throw new NotFoundException(`Categoria não foi encontrada`);
+    }
+
+    Object.assign(categoryResponse, category);
+
+    return this.categoriesRepository.save(categoryResponse);
   }
 
   remove(id: number) {

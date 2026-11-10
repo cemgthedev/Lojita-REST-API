@@ -18,6 +18,11 @@ import { UsersService } from './users.service';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
+  @Post()
+  create(@Body() user: CreateUserDto) {
+    return this.usersService.create(user);
+  }
+
   @Get()
   findAll(@Query() query: QueryUserDto) {
     return this.usersService.query(query);
@@ -26,11 +31,6 @@ export class UsersController {
   @Get(':id')
   findOne(@Param('id', ParseIntPipe) id: number) {
     return this.usersService.findOne(+id);
-  }
-
-  @Post()
-  create(@Body() user: CreateUserDto) {
-    return this.usersService.create(user);
   }
 
   @Patch(':id')

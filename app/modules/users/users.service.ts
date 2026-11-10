@@ -22,6 +22,28 @@ export class UsersService {
     @InjectRepository(User) readonly usersRepository: Repository<User>,
   ) {}
 
+  async create(user: CreateUserDto) {
+    const emailRegistered: boolean = await this.usersRepository.exists({
+      where: { email: user.email },
+    });
+
+    if (emailRegistered) {
+      throw new ConflictException(`O email ${user.email} já foi cadastrado`);
+    }
+
+    const cpfRegistered: boolean = await this.usersRepository.exists({
+      where: { cpf: user.cpf },
+    });
+
+    if (cpfRegistered) {
+      throw new ConflictException('CPF já cadastrado');
+    }
+
+    const newUser: User = this.usersRepository.create(user);
+
+    return this.usersRepository.save(newUser);
+  }
+
   async query(query: QueryUserDto) {
     const { name, role, limit, page } = query;
     const queryBuilder = this.usersRepository.createQueryBuilder('user');
@@ -64,28 +86,6 @@ export class UsersService {
     }
 
     return user;
-  }
-
-  async create(user: CreateUserDto) {
-    const emailRegistered: boolean = await this.usersRepository.exists({
-      where: { email: user.email },
-    });
-
-    if (emailRegistered) {
-      throw new ConflictException(`O email ${user.email} já foi cadastrado`);
-    }
-
-    const cpfRegistered: boolean = await this.usersRepository.exists({
-      where: { cpf: user.cpf },
-    });
-
-    if (cpfRegistered) {
-      throw new ConflictException('CPF já cadastrado');
-    }
-
-    const newUser: User = this.usersRepository.create(user);
-
-    return this.usersRepository.save(newUser);
   }
 
   async update(id: number, user: UpdateUserDto) {

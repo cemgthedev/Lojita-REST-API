@@ -3,6 +3,8 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -32,6 +34,18 @@ export class User {
 
   @Column({ type: 'enum', enum: Role, default: Role.CUSTOMER })
   role!: Role;
+
+  /**
+  TODO: somente se pedido, classes Store, Address e Card e relações com users
+  @OneToOne(() => Store, (store) => store.user)
+  store?: Store;
+
+  @OneToMany(() => Address, (address) => address.user)
+  addresses?: Address[];
+
+  @OneToMany(() => Card, (card) => card.user)
+  cards?: Card[];
+   */
 
   @CreateDateColumn({
     type: 'timestamptz',

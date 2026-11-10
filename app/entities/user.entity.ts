@@ -3,8 +3,6 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  OneToMany,
-  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -37,7 +35,11 @@ export class User {
 
   /**
   TODO: somente se pedido, classes Store, Address e Card e relações com users
-  @OneToOne(() => Store, (store) => store.user)
+  @Column({ type: 'number' })
+  storeId!: number;
+
+  @OneToOne(() => Store)
+  @JoinColumn({ name: 'storeId', referencedColumnName: 'id' })
   store?: Store;
 
   @OneToMany(() => Address, (address) => address.user)

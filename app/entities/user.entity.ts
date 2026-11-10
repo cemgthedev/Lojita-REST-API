@@ -36,8 +36,8 @@ export class User {
   @Column({ type: 'enum', enum: Role, default: Role.CUSTOMER })
   role!: Role;
 
-  @Column({ type: 'number' })
-  storeId!: number;
+  @Column({ type: 'number', nullable: true })
+  storeId?: number;
 
   @OneToOne(() => Store, { nullable: true })
   @JoinColumn({ name: 'storeId', referencedColumnName: 'id' })

@@ -121,7 +121,19 @@ export class StoresService {
     return this.storesRepository.save(storeResponse);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} store`;
+  async remove(id: number) {
+    const storeResponse: Store = await this.findOne(id);
+
+    if (!storeResponse) {
+      throw new NotFoundException(`Loja não foi encontrada`);
+    }
+
+    const response = await this.storesRepository.delete(id);
+
+    if (!response.affected) {
+      throw new ConflictException(`Não foi possível remover a loja`);
+    }
+
+    return `Loja removida com sucesso`;
   }
 }

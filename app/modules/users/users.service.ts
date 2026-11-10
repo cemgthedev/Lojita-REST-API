@@ -1,7 +1,11 @@
 import { PaginationResponse } from '@/common/types/pagination-response.type';
 import { User } from '@/entities/user.entity';
 import { QueryUserDto } from '@/modules/users/dto/query-user.dto';
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  ConflictException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -51,7 +55,9 @@ export class UsersService {
   }
 
   async findOne(id: number) {
-    const user = await this.usersRepository.findOne({ where: { id } });
+    const user: User | null = await this.usersRepository.findOne({
+      where: { id },
+    });
 
     if (!user) {
       throw new NotFoundException(`Usuário de id #${id} não foi encontrado`);
@@ -61,11 +67,39 @@ export class UsersService {
   }
 
   async create(user: CreateUserDto) {
-    return `This action create a new user`;
+    const emailRegistered: boolean = await this.usersRepository.exists({
+      where: { email: user.email },
+    });
+
+    if (emailRegistered) {
+      throw new ConflictException(`O email ${user.email} já foi cadastrado`);
+    }
+
+    const cpfRegistered: boolean = await this.usersRepository.exists({
+      where: { cpf: user.cpf },
+    });
+
+    if (cpfRegistered) {
+      throw new ConflictException('CPF já cadastrado');
+    }
+
+    const newUser: User = this.usersRepository.create(user);
+
+    return this.usersRepository.save(newUser);
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  async update(id: number, user: UpdateUserDto) {
+    const userResponse: User = await this.findOne(id);
+
+    if (!userResponse) {
+      throw new NotFoundException(`Usuário não foi encontrado`);
+    }
+
+    Object.assign(userResponse, user);
+
+    const response: User = await this.usersRepository.save(userResponse);
+
+    return response;
   }
 
   remove(id: number) {

@@ -32,8 +32,8 @@ export class Store {
   @Column({ type: 'varchar', length: 50 })
   phoneNumber!: string;
 
-  @Column({ type: 'number' })
-  userId!: number;
+  @Column({ type: 'number', nullable: true })
+  userId?: number;
 
   @OneToOne(() => User, { nullable: true })
   @JoinColumn({ name: 'userId', referencedColumnName: 'id' })

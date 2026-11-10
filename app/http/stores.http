@@ -24,7 +24,7 @@ Content-Type: application/json
   "description": "Loja de produtos variados",
   "businessEmail": "contato@mercadocentral.com",
   "phoneNumber": "5511999999999",
-  "userId": 1
+  "userId": 2
 }
 
 ### Update a store

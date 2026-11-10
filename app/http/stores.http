@@ -1,0 +1,40 @@
+@baseUrl = http://localhost:3000
+@storeId = 1
+
+### List stores
+GET {{baseUrl}}/stores
+
+### List stores filtered by name
+GET {{baseUrl}}/stores?name=mercado
+
+### List stores with name filter and pagination
+GET {{baseUrl}}/stores?name=mercado&limit=10&page=1
+
+### Get a store by ID
+GET {{baseUrl}}/stores/{{storeId}}
+
+### Create a store
+POST {{baseUrl}}/stores
+Content-Type: application/json
+
+{
+  "name": "Mercado Central",
+  "nickname": "mercado-central",
+  "imageUrl": "https://example.com/mercado.png",
+  "description": "Loja de produtos variados",
+  "businessEmail": "contato@mercadocentral.com",
+  "phoneNumber": "5511999999999",
+  "userId": 1
+}
+
+### Update a store
+PATCH {{baseUrl}}/stores/{{storeId}}
+Content-Type: application/json
+
+{
+  "name": "Mercado Central São Paulo",
+  "phoneNumber": "5511888888888"
+}
+
+### Delete a store
+DELETE {{baseUrl}}/stores/{{storeId}}

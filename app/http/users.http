@@ -1,0 +1,37 @@
+@baseUrl = http://localhost:3000
+@userId = 1
+
+### List users
+GET {{baseUrl}}/users
+
+### List users with pagination and filters
+GET {{baseUrl}}/users?limit=10&page=1&name=Maria&role=customer
+
+### Get a user by ID
+GET {{baseUrl}}/users/{{userId}}
+
+### Create a user
+POST {{baseUrl}}/users
+Content-Type: application/json
+
+{
+  "name": "Maria Silva",
+  "avatarUrl": "https://example.com/avatar.png",
+  "whatsapp": "5511999999999",
+  "cpf": "12345678901",
+  "email": "maria@example.com",
+  "password": "change-me",
+  "role": "customer"
+}
+
+### Update a user
+PATCH {{baseUrl}}/users/{{userId}}
+Content-Type: application/json
+
+{
+  "name": "Maria Silva Santos",
+  "whatsapp": "5511888888888"
+}
+
+### Delete a user
+DELETE {{baseUrl}}/users/{{userId}}

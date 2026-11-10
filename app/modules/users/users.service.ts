@@ -102,7 +102,19 @@ export class UsersService {
     return response;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  async remove(id: number) {
+    const userResponse: User = await this.findOne(id);
+
+    if (!userResponse) {
+      throw new NotFoundException(`Usuário não foi encontrado`);
+    }
+
+    const response = await this.usersRepository.delete(id);
+
+    if (!response.affected) {
+      throw new ConflictException(`Não foi possível remover a conta`);
+    }
+
+    return `Conta removida com sucesso`;
   }
 }

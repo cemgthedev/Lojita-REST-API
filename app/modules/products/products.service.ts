@@ -52,7 +52,8 @@ export class ProductsService {
 
     queryBuilder
       .leftJoinAndSelect('product.category', 'category')
-      .leftJoinAndSelect('product.store', 'store');
+      .leftJoinAndSelect('product.store', 'store')
+      .leftJoinAndSelect('product.defaultVariant', 'variant');
 
     if (title) {
       queryBuilder.andWhere('product.title ILIKE :title', {

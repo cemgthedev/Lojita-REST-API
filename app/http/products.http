@@ -1,0 +1,42 @@
+@baseUrl = http://localhost:3000
+@productId = 1
+@categoryId = 2
+@storeId = 2
+
+### List products
+GET {{baseUrl}}/products
+
+### Filter products by title
+GET {{baseUrl}}/products?title=caf%C3%A9
+
+### Filter products by category and store
+GET {{baseUrl}}/products?categoryId={{categoryId}}&storeId={{storeId}}
+
+### List products with pagination
+GET {{baseUrl}}/products?limit=10&page=1
+
+### Get a product by ID
+GET {{baseUrl}}/products/{{productId}}
+
+### Create a product
+POST {{baseUrl}}/products
+Content-Type: application/json
+
+{
+  "title": "Café em grãos",
+  "description": "Café torrado e moído",
+  "categoryId": 2,
+  "storeId": 2,
+  "defaultVariantId": 1
+}
+
+### Update a product
+PATCH {{baseUrl}}/products/{{productId}}
+Content-Type: application/json
+
+{
+  "title": "Café especial em grãos"
+}
+
+### Delete a product
+DELETE {{baseUrl}}/products/{{productId}}

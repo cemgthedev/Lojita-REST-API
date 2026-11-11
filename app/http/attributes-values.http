@@ -1,0 +1,37 @@
+@baseUrl = http://localhost:3000
+@attributesValueId = 1
+@attributeId = 2
+
+### List attribute values
+GET {{baseUrl}}/attributes-values
+
+### Filter attribute values by attribute and title
+GET {{baseUrl}}/attributes-values?attributeId={{attributeId}}&title=azul
+
+### List attribute values with pagination
+GET {{baseUrl}}/attributes-values?limit=10&page=1
+
+### Get an attribute value by ID
+GET {{baseUrl}}/attributes-values/{{attributesValueId}}
+
+### Create an attribute value
+POST {{baseUrl}}/attributes-values
+Content-Type: application/json
+
+{
+  "title": "Azul",
+  "value": "#0000FF",
+  "attributeId": {{attributeId}}
+}
+
+### Update an attribute value
+PATCH {{baseUrl}}/attributes-values/{{attributesValueId}}
+Content-Type: application/json
+
+{
+  "title": "Azul marinho",
+  "value": "#000080"
+}
+
+### Delete an attribute value
+DELETE {{baseUrl}}/attributes-values/{{attributesValueId}}

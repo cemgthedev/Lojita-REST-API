@@ -1,5 +1,6 @@
 import { AttributesService } from '@/modules/attributes/attribute.service';
 import { CreateAttributeDto } from '@/modules/attributes/dto/create-attribute.dto';
+import { QueryAttributeDto } from '@/modules/attributes/dto/query-attribute.dto';
 import { UpdateAttributeDto } from '@/modules/attributes/dto/update-attribute.dto';
 import {
   Body,
@@ -10,6 +11,7 @@ import {
   ParseIntPipe,
   Patch,
   Post,
+  Query,
 } from '@nestjs/common';
 
 @Controller('attributes')
@@ -22,8 +24,8 @@ export class AttributesController {
   }
 
   @Get()
-  findAll() {
-    return this.attributesService.findAll();
+  findAll(@Query() query: QueryAttributeDto) {
+    return this.attributesService.query(query);
   }
 
   @Get(':id')

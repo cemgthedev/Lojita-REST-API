@@ -1,0 +1,36 @@
+@baseUrl = http://localhost:3000
+@variantId = 1
+@productId = 1
+
+### List variants
+GET {{baseUrl}}/variants
+
+### Filter variants by product and status
+GET {{baseUrl}}/variants?productId={{productId}}&status=active
+
+### Get one variant
+GET {{baseUrl}}/variants/{{variantId}}
+
+### Create variant
+POST {{baseUrl}}/variants
+Content-Type: application/json
+
+{
+  "price": 27.50,
+  "stock": 10,
+  "sku": "CAF-001",
+  "status": "active",
+  "productId": 3
+}
+
+### Update variant
+PATCH {{baseUrl}}/variants/{{variantId}}
+Content-Type: application/json
+
+{
+  "price": 29.90,
+  "stock": 15
+}
+
+### Delete variant
+DELETE {{baseUrl}}/variants/{{variantId}}

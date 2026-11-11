@@ -1,5 +1,5 @@
 @baseUrl = http://localhost:3000
-@productId = 1
+@productId = 3
 @categoryId = 2
 @storeId = 2
 
@@ -26,8 +26,7 @@ Content-Type: application/json
   "title": "Café em grãos",
   "description": "Café torrado e moído",
   "categoryId": 2,
-  "storeId": 2,
-  "defaultVariantId": 1
+  "storeId": 2
 }
 
 ### Update a product
@@ -35,7 +34,8 @@ PATCH {{baseUrl}}/products/{{productId}}
 Content-Type: application/json
 
 {
-  "title": "Café especial em grãos"
+  "title": "Café especial em grãos",
+  "defaultVariantId": 1
 }
 
 ### Delete a product

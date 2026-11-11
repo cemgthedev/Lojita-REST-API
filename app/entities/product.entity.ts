@@ -1,11 +1,14 @@
 import { Category } from '@/entities/category.entity';
 import { Store } from '@/entities/store.entity';
+import { Variant } from '@/entities/variant.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -38,11 +41,12 @@ export class Product {
   @Column({ type: 'int', nullable: true })
   defaultVariantId?: number;
 
-  /**
-   * @OneToOne(() => Variant, { nullable: true })
+  @OneToMany(() => Variant, (variant) => variant.product)
+  variants?: Variant[];
+
+  @OneToOne(() => Variant, { nullable: true })
   @JoinColumn({ name: 'defaultVariantId', referencedColumnName: 'id' })
   defaultVariant?: Variant;
-   */
 
   @CreateDateColumn({
     type: 'timestamptz',

@@ -1,0 +1,29 @@
+@baseUrl = http://localhost:3000
+@attributeId = 1
+
+### List attributes
+GET {{baseUrl}}/attributes
+
+### Get an attribute by ID
+GET {{baseUrl}}/attributes/{{attributeId}}
+
+### Create an attribute
+POST {{baseUrl}}/attributes
+Content-Type: application/json
+
+{
+  "name": "Cor",
+  "type": "hex"
+}
+
+### Update an attribute
+PATCH {{baseUrl}}/attributes/{{attributeId}}
+Content-Type: application/json
+
+{
+  "name": "Cor da embalagem",
+  "type": "word"
+}
+
+### Delete an attribute
+DELETE {{baseUrl}}/attributes/{{attributeId}}

@@ -122,11 +122,7 @@ export class StoresService {
   }
 
   async remove(id: number) {
-    const storeResponse: Store = await this.findOne(id);
-
-    if (!storeResponse) {
-      throw new NotFoundException(`Loja não foi encontrada`);
-    }
+    await this.findOne(id);
 
     const response = await this.storesRepository.delete(id);
 

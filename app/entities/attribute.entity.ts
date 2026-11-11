@@ -1,8 +1,10 @@
+import { AttributeValue } from '@/entities/attribute-value.entity';
 import { ATRIBUTE_TYPE } from '@/modules/attributes/enums/type.enum';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -17,6 +19,9 @@ export class Attribute {
 
   @Column({ type: 'enum', enum: ATRIBUTE_TYPE })
   type!: ATRIBUTE_TYPE;
+
+  @OneToMany(() => AttributeValue, (attributeValue) => attributeValue.attribute)
+  values?: AttributeValue[];
 
   @CreateDateColumn({
     type: 'timestamptz',

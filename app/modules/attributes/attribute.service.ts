@@ -1,5 +1,7 @@
+import { PaginationResponse } from '@/common/types/pagination-response.type';
 import { Attribute } from '@/entities/attribute.entity';
 import { CreateAttributeDto } from '@/modules/attributes/dto/create-attribute.dto';
+import { QueryAttributeDto } from '@/modules/attributes/dto/query-attribute.dto';
 import { UpdateAttributeDto } from '@/modules/attributes/dto/update-attribute.dto';
 import {
   ConflictException,
@@ -8,6 +10,11 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+
+export type AttributesResponse = {
+  data: Attribute[];
+  meta: PaginationResponse;
+};
 
 @Injectable()
 export class AttributesService {
@@ -32,8 +39,26 @@ export class AttributesService {
     return this.attributesRepository.save(newAttribute);
   }
 
-  async findAll() {
-    return await this.attributesRepository.find();
+  async query(query: QueryAttributeDto): Promise<AttributesResponse> {
+    const { limit, page } = query;
+    const queryBuilder =
+      this.attributesRepository.createQueryBuilder('attribute');
+
+    const [attributes, total] = await queryBuilder
+      .leftJoinAndSelect('attribute.values', 'values')
+      .take(limit)
+      .skip((page - 1) * limit)
+      .getManyAndCount();
+
+    return {
+      data: attributes,
+      meta: {
+        total,
+        page,
+        limit,
+        totalPages: Math.ceil(total / limit),
+      },
+    };
   }
 
   async findOne(id: number) {

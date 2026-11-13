@@ -1,0 +1,33 @@
+@baseUrl = http://localhost:3000
+@favoriteId = 1
+@userId = 2
+@variantId = 1
+
+### List favorites
+GET {{baseUrl}}/favorites
+
+### Filter favorites by user
+GET {{baseUrl}}/favorites?userId={{userId}}
+
+### Get one favorite
+GET {{baseUrl}}/favorites/{{favoriteId}}
+
+### Add a variant to a user's favorites
+POST {{baseUrl}}/favorites
+Content-Type: application/json
+
+{
+  "userId": 2,
+  "variantId": 1
+}
+
+### Update a favorite
+PATCH {{baseUrl}}/favorites/{{favoriteId}}
+Content-Type: application/json
+
+{
+  "variantId": 1
+}
+
+### Remove a favorite
+DELETE {{baseUrl}}/favorites/{{favoriteId}}

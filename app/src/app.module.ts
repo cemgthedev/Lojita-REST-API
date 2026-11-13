@@ -1,6 +1,7 @@
 import { DBConnectModule } from '@/dinamic/db-connect.module';
 import { AttributesModule } from '@/modules/attributes/attribute.module';
 import { AttributesValuesModule } from '@/modules/attributes-values/attributes-values.module';
+import { FavoritesModule } from '@/modules/favorites/favorites.module';
 import { ProductsModule } from '@/modules/products/products.module';
 import { SpecificationsModule } from '@/modules/specifications/specifications.module';
 import { VariantAttributesModule } from '@/modules/variant-attributes/variant-attributes.module';
@@ -25,6 +26,7 @@ import { AppService } from './app.service';
     StoresModule,
     AttributesModule,
     AttributesValuesModule,
+    FavoritesModule,
     ProductsModule,
     SpecificationsModule,
     VariantsModule,

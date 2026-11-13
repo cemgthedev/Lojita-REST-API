@@ -1,6 +1,7 @@
 import { STATUS } from '@/common/enums/status.enum';
 import { Product } from '@/entities/product.entity';
 import { VariantAttribute } from '@/entities/variant-attribute.entity';
+import { VariantImage } from '@/entities/variant-image.entity';
 import {
   Column,
   CreateDateColumn,
@@ -38,6 +39,9 @@ export class Variant {
 
   @OneToMany(() => VariantAttribute, (variantAttribute) => variantAttribute.variant)
   variantAttributes?: VariantAttribute[];
+
+  @OneToMany(() => VariantImage, (variantImage) => variantImage.variant)
+  images?: VariantImage[];
 
   @CreateDateColumn({
     type: 'timestamptz',

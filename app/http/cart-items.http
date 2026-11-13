@@ -1,0 +1,34 @@
+@baseUrl = http://localhost:3000
+@cartItemId = 1
+@cartId = 1
+@variantId = 1
+
+### List cart items
+GET {{baseUrl}}/cart-items
+
+### Filter cart items by cart
+GET {{baseUrl}}/cart-items?cartId={{cartId}}
+
+### Get one cart item
+GET {{baseUrl}}/cart-items/{{cartItemId}}
+
+### Add a variant to a cart
+POST {{baseUrl}}/cart-items
+Content-Type: application/json
+
+{
+  "quantity": 1,
+  "cartId": 1,
+  "variantId": 1
+}
+
+### Update a cart item
+PATCH {{baseUrl}}/cart-items/{{cartItemId}}
+Content-Type: application/json
+
+{
+  "quantity": 2
+}
+
+### Delete a cart item
+DELETE {{baseUrl}}/cart-items/{{cartItemId}}

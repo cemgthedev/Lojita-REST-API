@@ -1,0 +1,37 @@
+@baseUrl = http://localhost:3000
+@specificationId = 1
+@productId = 1
+
+### List specifications
+GET {{baseUrl}}/specifications
+
+### Filter specifications by product
+GET {{baseUrl}}/specifications?productId={{productId}}
+
+### Search specifications by name and value
+GET {{baseUrl}}/specifications?name=cor&value=azul
+
+### Get one specification
+GET {{baseUrl}}/specifications/{{specificationId}}
+
+### Create specification
+POST {{baseUrl}}/specifications
+Content-Type: application/json
+
+{
+  "name": "Cor",
+  "value": "Azul",
+  "productId": 3
+}
+
+### Update specification
+PATCH {{baseUrl}}/specifications/{{specificationId}}
+Content-Type: application/json
+
+{
+  "name": "Cor principal",
+  "value": "Azul-marinho"
+}
+
+### Delete specification
+DELETE {{baseUrl}}/specifications/{{specificationId}}

@@ -1,10 +1,12 @@
 import { Attribute } from '@/entities/attribute.entity';
+import { VariantAttribute } from '@/entities/variant-attribute.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -26,6 +28,9 @@ export class AttributeValue {
   @ManyToOne(() => Attribute, (attribute) => attribute.values)
   @JoinColumn({ name: 'attributeId', referencedColumnName: 'id' })
   attribute?: Attribute;
+
+  @OneToMany(() => VariantAttribute, (variantAttribute) => variantAttribute.attributeValue)
+  variantAttributes?: VariantAttribute[];
 
   @CreateDateColumn({
     type: 'timestamptz',

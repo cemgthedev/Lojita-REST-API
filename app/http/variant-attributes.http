@@ -1,0 +1,33 @@
+@baseUrl = http://localhost:3000
+@variantId = 1
+@attributeValueId = 1
+@variantAttributeId = 1
+
+### List variant attributes
+GET {{baseUrl}}/variant-attributes
+
+### Filter variant attributes by variant and attribute value
+GET {{baseUrl}}/variant-attributes?variantId={{variantId}}&attributeValueId={{attributeValueId}}
+
+### Get one variant attribute
+GET {{baseUrl}}/variant-attributes/{{variantAttributeId}}
+
+### Create variant attribute
+POST {{baseUrl}}/variant-attributes
+Content-Type: application/json
+
+{
+  "variantId": 1,
+  "attributeValueId": 1
+}
+
+### Update variant attribute
+PATCH {{baseUrl}}/variant-attributes/{{variantAttributeId}}
+Content-Type: application/json
+
+{
+  "attributeValueId": 2
+}
+
+### Delete variant attribute
+DELETE {{baseUrl}}/variant-attributes/{{variantAttributeId}}

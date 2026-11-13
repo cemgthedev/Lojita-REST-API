@@ -1,0 +1,41 @@
+@baseUrl = http://localhost:3000
+@userAddressId = 1
+@userId = 2
+
+### List user addresses
+GET {{baseUrl}}/user-address
+
+### Filter user addresses by user and type
+GET {{baseUrl}}/user-address?userId={{userId}}&type=home
+
+### Get one user address
+GET {{baseUrl}}/user-address/{{userAddressId}}
+
+### Create user address
+POST {{baseUrl}}/user-address
+Content-Type: application/json
+
+{
+  "name": "Casa",
+  "type": "home",
+  "cep": "01001-000",
+  "street": "Praça da Sé",
+  "city": "São Paulo",
+  "state": "SP",
+  "neighborhood": "Sé",
+  "number": "100",
+  "complement": "Apto 1",
+  "userId": 2
+}
+
+### Update user address
+PATCH {{baseUrl}}/user-address/{{userAddressId}}
+Content-Type: application/json
+
+{
+  "number": "120",
+  "complement": "Casa"
+}
+
+### Delete user address
+DELETE {{baseUrl}}/user-address/{{userAddressId}}

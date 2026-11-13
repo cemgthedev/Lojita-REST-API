@@ -1,10 +1,12 @@
 import { Store } from '@/entities/store.entity';
+import { UserAddress } from '@/entities/user-address.entity';
 import { Role } from '@/modules/users/enums/role.enum';
 import {
   Column,
   CreateDateColumn,
   Entity,
   JoinColumn,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -43,14 +45,8 @@ export class User {
   @JoinColumn({ name: 'storeId', referencedColumnName: 'id' })
   store?: Store;
 
-  /**
-  TODO: somente se pedido, classes Store, Address e Card e relações com users
-  @OneToMany(() => Address, (address) => address.user)
-  addresses?: Address[];
-
-  @OneToMany(() => Card, (card) => card.user)
-  cards?: Card[];
-   */
+  @OneToMany(() => UserAddress, (address) => address.user)
+  addresses?: UserAddress[];
 
   @CreateDateColumn({
     type: 'timestamptz',

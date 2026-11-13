@@ -1,6 +1,7 @@
 import { DBConnectModule } from '@/dinamic/db-connect.module';
 import { AttributesModule } from '@/modules/attributes/attribute.module';
 import { AttributesValuesModule } from '@/modules/attributes-values/attributes-values.module';
+import { CartItemsModule } from '@/modules/cart-items/cart-items.module';
 import { CartsModule } from '@/modules/carts/carts.module';
 import { FavoritesModule } from '@/modules/favorites/favorites.module';
 import { ProductsModule } from '@/modules/products/products.module';
@@ -27,6 +28,7 @@ import { AppService } from './app.service';
     StoresModule,
     AttributesModule,
     AttributesValuesModule,
+    CartItemsModule,
     CartsModule,
     FavoritesModule,
     ProductsModule,

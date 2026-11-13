@@ -10,6 +10,7 @@ import { Module } from '@nestjs/common';
 import { CategoriesModule } from '../modules/categories/categories.module';
 import { StoresModule } from '../modules/stores/stores.module';
 import { UsersModule } from '../modules/users/users.module';
+import { UserAddressModule } from '@/modules/user-address/user-address.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
@@ -19,6 +20,7 @@ import { AppService } from './app.service';
       type: 'test',
     }),
     UsersModule,
+    UserAddressModule,
     CategoriesModule,
     StoresModule,
     AttributesModule,

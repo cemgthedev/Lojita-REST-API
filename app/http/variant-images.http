@@ -1,0 +1,34 @@
+@baseUrl = http://localhost:3000
+@variantImageId = 1
+@variantId = 1
+
+### List variant images
+GET {{baseUrl}}/variant-images
+
+### Filter variant images by variant and sort order
+GET {{baseUrl}}/variant-images?variantId={{variantId}}&sortOrder=0
+
+### Get one variant image
+GET {{baseUrl}}/variant-images/{{variantImageId}}
+
+### Create variant image
+POST {{baseUrl}}/variant-images
+Content-Type: application/json
+
+{
+  "url": "https://example.com/images/variant-1.jpg",
+  "sortOrder": 0,
+  "variantId": 1
+}
+
+### Update variant image
+PATCH {{baseUrl}}/variant-images/{{variantImageId}}
+Content-Type: application/json
+
+{
+  "sortOrder": 1,
+  "url": "https://example.com/images/variant-1-front.jpg"
+}
+
+### Delete variant image
+DELETE {{baseUrl}}/variant-images/{{variantImageId}}

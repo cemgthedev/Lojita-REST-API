@@ -1,4 +1,5 @@
 import { Category } from '@/entities/category.entity';
+import { Specification } from '@/entities/specification.entity';
 import { Store } from '@/entities/store.entity';
 import { Variant } from '@/entities/variant.entity';
 import {
@@ -47,6 +48,9 @@ export class Product {
   @OneToOne(() => Variant, { nullable: true })
   @JoinColumn({ name: 'defaultVariantId', referencedColumnName: 'id' })
   defaultVariant?: Variant;
+
+  @OneToMany(() => Specification, (specification) => specification.product)
+  specifications?: Specification[];
 
   @CreateDateColumn({
     type: 'timestamptz',

@@ -1,0 +1,31 @@
+@baseUrl = http://localhost:3000
+@cartId = 1
+@userId = 2
+
+### List carts
+GET {{baseUrl}}/carts
+
+### Filter carts by user
+GET {{baseUrl}}/carts?userId={{userId}}
+
+### Get one cart
+GET {{baseUrl}}/carts/{{cartId}}
+
+### Create a cart
+POST {{baseUrl}}/carts
+Content-Type: application/json
+
+{
+  "userId": 2
+}
+
+### Update a cart's user
+PATCH {{baseUrl}}/carts/{{cartId}}
+Content-Type: application/json
+
+{
+  "userId": 2
+}
+
+### Delete a cart
+DELETE {{baseUrl}}/carts/{{cartId}}

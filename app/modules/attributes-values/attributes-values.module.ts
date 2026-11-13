@@ -9,5 +9,6 @@ import { AttributesValuesService } from './attributes-values.service';
   imports: [TypeOrmModule.forFeature([AttributeValue]), AttributesModule],
   controllers: [AttributesValuesController],
   providers: [AttributesValuesService],
+  exports: [AttributesValuesService],
 })
 export class AttributesValuesModule {}

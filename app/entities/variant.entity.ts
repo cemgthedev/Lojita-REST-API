@@ -1,11 +1,13 @@
 import { STATUS } from '@/common/enums/status.enum';
 import { Product } from '@/entities/product.entity';
+import { VariantAttribute } from '@/entities/variant-attribute.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -33,6 +35,9 @@ export class Variant {
   @ManyToOne(() => Product, (product) => product.variants, { nullable: true })
   @JoinColumn({ name: 'productId', referencedColumnName: 'id' })
   product?: Product;
+
+  @OneToMany(() => VariantAttribute, (variantAttribute) => variantAttribute.variant)
+  variantAttributes?: VariantAttribute[];
 
   @CreateDateColumn({
     type: 'timestamptz',

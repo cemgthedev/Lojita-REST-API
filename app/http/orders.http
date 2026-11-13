@@ -1,0 +1,35 @@
+@baseUrl = http://localhost:3000
+@orderId = 1
+@userId = 1
+
+### List orders
+GET {{baseUrl}}/orders
+
+### Filter orders by user and status
+GET {{baseUrl}}/orders?userId={{userId}}&status=pending
+
+### Get one order
+GET {{baseUrl}}/orders/{{orderId}}
+
+### Create order
+POST {{baseUrl}}/orders
+Content-Type: application/json
+
+{
+  "userId": 2,
+  "subtotal": 100.00,
+  "shippingTotal": 10.00,
+  "discountTotal": 0.00,
+  "total": 110.00
+}
+
+### Update order
+PATCH {{baseUrl}}/orders/{{orderId}}
+Content-Type: application/json
+
+{
+  "status": "confirmed"
+}
+
+### Delete order
+DELETE {{baseUrl}}/orders/{{orderId}}

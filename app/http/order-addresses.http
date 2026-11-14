@@ -1,0 +1,41 @@
+@baseUrl = http://localhost:3000
+@orderAddressId = 1
+@orderId = 1
+
+### List order addresses
+GET {{baseUrl}}/order-addresses
+
+### Filter by order
+GET {{baseUrl}}/order-addresses?orderId={{orderId}}
+
+### Get one order address
+GET {{baseUrl}}/order-addresses/{{orderAddressId}}
+
+### Create order address
+POST {{baseUrl}}/order-addresses
+Content-Type: application/json
+
+{
+  "name": "Casa",
+  "type": "home",
+  "cep": "01000-000",
+  "street": "Rua das Flores",
+  "city": "São Paulo",
+  "state": "SP",
+  "neighborhood": "Centro",
+  "number": "123",
+  "complement": "Ap 10",
+  "recipientName": "Carlos",
+  "orderId": 1
+}
+
+### Update order address
+PATCH {{baseUrl}}/order-addresses/{{orderAddressId}}
+Content-Type: application/json
+
+{
+  "recipientName": "Carlos Mendes"
+}
+
+### Delete order address
+DELETE {{baseUrl}}/order-addresses/{{orderAddressId}}

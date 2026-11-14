@@ -1,0 +1,39 @@
+@baseUrl = http://localhost:3000
+@orderSellerId = 1
+@orderId = 1
+@storeId = 2
+
+### List order sellers
+GET {{baseUrl}}/order-sellers
+
+### Filter order sellers by order and store
+GET {{baseUrl}}/order-sellers?orderId={{orderId}}&storeId={{storeId}}
+
+### Get one order seller
+GET {{baseUrl}}/order-sellers/{{orderSellerId}}
+
+### Create order seller
+POST {{baseUrl}}/order-sellers
+Content-Type: application/json
+
+{
+  "orderId": 1,
+  "storeId": 2,
+  "subtotal": 100.00,
+  "shippingTotal": 10.00,
+  "discountTotal": 0.00,
+  "total": 110.00,
+  "status": "pending"
+}
+
+### Update order seller
+PATCH {{baseUrl}}/order-sellers/{{orderSellerId}}
+Content-Type: application/json
+
+{
+  "status": "confirmed",
+  "sortOrder": 1
+}
+
+### Delete order seller
+DELETE {{baseUrl}}/order-sellers/{{orderSellerId}}

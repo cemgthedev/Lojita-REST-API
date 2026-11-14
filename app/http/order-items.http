@@ -1,0 +1,41 @@
+@baseUrl = http://localhost:3000
+@orderItemId = 1
+@orderId = 1
+@variantId = 1
+@orderSellerId = 1
+
+### List order items
+GET {{baseUrl}}/order-items
+
+### Filter order items by order
+GET {{baseUrl}}/order-items?orderId={{orderId}}
+
+### Get one order item
+GET {{baseUrl}}/order-items/{{orderItemId}}
+
+### Create order item
+POST {{baseUrl}}/order-items
+Content-Type: application/json
+
+{
+  "quantity": 2,
+  "unitPrice": 49.90,
+  "productName": "Camiseta Lojita",
+  "sku": "CAM-001",
+  "subtotal": 99.80,
+  "orderId": 1,
+  "variantId": 1,
+  "orderSellerId": 2
+}
+
+### Update an order item
+PATCH {{baseUrl}}/order-items/{{orderItemId}}
+Content-Type: application/json
+
+{
+  "quantity": 3,
+  "subtotal": 149.70
+}
+
+### Delete an order item
+DELETE {{baseUrl}}/order-items/{{orderItemId}}

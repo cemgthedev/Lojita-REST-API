@@ -1,0 +1,35 @@
+@baseUrl = http://localhost:3000
+@paymentMethodId = 1
+@userId = 1
+
+### List payment methods
+GET {{baseUrl}}/payment-methods
+
+### Filter payment methods by user
+GET {{baseUrl}}/payment-methods?userId={{userId}}
+
+### Get one payment method
+GET {{baseUrl}}/payment-methods/{{paymentMethodId}}
+
+### Create payment method
+POST {{baseUrl}}/payment-methods
+Content-Type: application/json
+
+{
+  "type": "card",
+  "method": "visa",
+  "provider": "Mercado Pago",
+  "providerToken": "tok_test_123456789",
+  "userId": 2
+}
+
+### Update payment method
+PATCH {{baseUrl}}/payment-methods/{{paymentMethodId}}
+Content-Type: application/json
+
+{
+  "method": "mastercard"
+}
+
+### Delete payment method
+DELETE {{baseUrl}}/payment-methods/{{paymentMethodId}}

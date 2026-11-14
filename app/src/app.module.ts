@@ -7,6 +7,7 @@ import { FavoritesModule } from '@/modules/favorites/favorites.module';
 import { OrderAddressesModule } from '@/modules/order-addresses/order-addresses.module';
 import { OrderItemsModule } from '@/modules/order-items/order-items.module';
 import { OrdersModule } from '@/modules/orders/orders.module';
+import { PaymentMethodsModule } from '@/modules/payment-methods/payment-methods.module';
 import { ProductsModule } from '@/modules/products/products.module';
 import { SpecificationsModule } from '@/modules/specifications/specifications.module';
 import { VariantAttributesModule } from '@/modules/variant-attributes/variant-attributes.module';
@@ -37,6 +38,7 @@ import { AppService } from './app.service';
     OrdersModule,
     OrderAddressesModule,
     OrderItemsModule,
+    PaymentMethodsModule,
     ProductsModule,
     SpecificationsModule,
     VariantsModule,

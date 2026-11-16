@@ -1,0 +1,34 @@
+@baseUrl = http://localhost:3000
+@couponImageId = 1
+@couponId = 1
+
+### List coupon images
+GET {{baseUrl}}/coupon-images
+
+### Filter coupon images by coupon and sort order
+GET {{baseUrl}}/coupon-images?couponId={{couponId}}&sortOrder=0
+
+### Get one coupon image
+GET {{baseUrl}}/coupon-images/{{couponImageId}}
+
+### Create coupon image
+POST {{baseUrl}}/coupon-images
+Content-Type: application/json
+
+{
+  "url": "https://example.com/images/coupon-1.jpg",
+  "sortOrder": 0,
+  "couponId": 1
+}
+
+### Update coupon image
+PATCH {{baseUrl}}/coupon-images/{{couponImageId}}
+Content-Type: application/json
+
+{
+  "sortOrder": 1,
+  "url": "https://example.com/images/coupon-1-updated.jpg"
+}
+
+### Delete coupon image
+DELETE {{baseUrl}}/coupon-images/{{couponImageId}}

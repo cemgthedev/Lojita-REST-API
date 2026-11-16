@@ -1,0 +1,32 @@
+@baseUrl = http://localhost:3000
+@couponId = 1
+@productId = 3
+
+### List coupon-product associations
+GET {{baseUrl}}/coupon-products
+
+### Filter associations by coupon
+GET {{baseUrl}}/coupon-products?couponId={{couponId}}
+
+### Get association by composite key
+GET {{baseUrl}}/coupon-products/{{couponId}}/{{productId}}
+
+### Associate product with coupon
+POST {{baseUrl}}/coupon-products
+Content-Type: application/json
+
+{
+  "couponId": 1,
+  "productId": 3
+}
+
+### Update association
+PATCH {{baseUrl}}/coupon-products/{{couponId}}/{{productId}}
+Content-Type: application/json
+
+{
+  "productId": 2
+}
+
+### Remove association
+DELETE {{baseUrl}}/coupon-products/{{couponId}}/{{productId}}

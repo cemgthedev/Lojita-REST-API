@@ -34,14 +34,13 @@ export class PaymentMethod {
   })
   providerToken!: string;
 
-  @Column({ name: 'user_id', type: 'int' })
+  @Column({ type: 'int' })
   userId!: number;
 
   @ManyToOne(() => User, {
-    nullable: false,
     onDelete: 'CASCADE',
   })
-  @JoinColumn({ name: 'user_id', referencedColumnName: 'id' })
+  @JoinColumn({ name: 'userId', referencedColumnName: 'id' })
   user?: User;
 
   @CreateDateColumn({ name: 'created_at', type: 'timestamptz' })

@@ -4,6 +4,7 @@ import { AttributesValuesModule } from '@/modules/attributes-values/attributes-v
 import { CardsModule } from '@/modules/cards/cards.module';
 import { CartItemsModule } from '@/modules/cart-items/cart-items.module';
 import { CartsModule } from '@/modules/carts/carts.module';
+import { CouponsModule } from '@/modules/coupons/coupons.module';
 import { FavoritesModule } from '@/modules/favorites/favorites.module';
 import { OrderAddressesModule } from '@/modules/order-addresses/order-addresses.module';
 import { OrderItemsModule } from '@/modules/order-items/order-items.module';
@@ -38,6 +39,7 @@ import { AppService } from './app.service';
     CardsModule,
     CartItemsModule,
     CartsModule,
+    CouponsModule,
     FavoritesModule,
     OrdersModule,
     OrderAddressesModule,

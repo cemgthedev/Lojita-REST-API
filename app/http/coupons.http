@@ -1,0 +1,42 @@
+@baseUrl = http://localhost:3000
+@couponId = 1
+@storeId = 2
+
+### List coupons
+GET {{baseUrl}}/coupons
+
+### Filter coupons by code and status
+GET {{baseUrl}}/coupons?code=BLACKFRIDAY&status=active
+
+### Get one coupon
+GET {{baseUrl}}/coupons/{{couponId}}
+
+### Create store coupon
+POST {{baseUrl}}/coupons
+Content-Type: application/json
+
+{
+  "title": "Black Friday",
+  "code": "BLACKFRIDAY",
+  "description": "Desconto de 10% na loja",
+  "scopeType": "store",
+  "type": "percentage",
+  "value": 10,
+  "minPurchaseAmount": 50,
+  "usageLimit": 100,
+  "usageLimitPerUser": 1,
+  "startAt": "2026-11-20T00:00:00.000Z",
+  "endAt": "2026-11-30T23:59:59.000Z",
+  "storeId": 2
+}
+
+### Update coupon
+PATCH {{baseUrl}}/coupons/{{couponId}}
+Content-Type: application/json
+
+{
+  "status": "inative"
+}
+
+### Delete coupon
+DELETE {{baseUrl}}/coupons/{{couponId}}

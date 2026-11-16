@@ -1,0 +1,36 @@
+@baseUrl = http://localhost:3000
+@cardId = 1
+@paymentMethodId = 1
+
+### List cards
+GET {{baseUrl}}/cards
+
+### Filter cards by payment method
+GET {{baseUrl}}/cards?paymentMethodId={{paymentMethodId}}
+
+### Get one card
+GET {{baseUrl}}/cards/{{cardId}}
+
+### Create card metadata
+POST {{baseUrl}}/cards
+Content-Type: application/json
+
+{
+  "name": "Personal card",
+  "brand": "Visa",
+  "last4": "4242",
+  "expMonth": 12,
+  "expYear": 2030,
+  "paymentMethodId": 1
+}
+
+### Update card metadata
+PATCH {{baseUrl}}/cards/{{cardId}}
+Content-Type: application/json
+
+{
+  "name": "Updated card name"
+}
+
+### Delete card
+DELETE {{baseUrl}}/cards/{{cardId}}

@@ -1,0 +1,26 @@
+@baseUrl = http://localhost:3000
+@userId = 1
+@couponId = 1
+@orderId = 1
+
+### List coupon usages
+GET {{baseUrl}}/coupon-usages
+
+### Filter usages by coupon
+GET {{baseUrl}}/coupon-usages?couponId={{couponId}}
+
+### Get a coupon usage by its composite key
+GET {{baseUrl}}/coupon-usages/{{userId}}/{{couponId}}/{{orderId}}
+
+### Record coupon usage
+POST {{baseUrl}}/coupon-usages
+Content-Type: application/json
+
+{
+  "userId": 2,
+  "couponId": 1,
+  "orderId": 1
+}
+
+### Remove coupon usage
+DELETE {{baseUrl}}/coupon-usages/{{userId}}/{{couponId}}/{{orderId}}

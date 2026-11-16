@@ -35,7 +35,7 @@ PATCH {{baseUrl}}/coupons/{{couponId}}
 Content-Type: application/json
 
 {
-  "status": "inative"
+  "status": "active"
 }
 
 ### Delete coupon

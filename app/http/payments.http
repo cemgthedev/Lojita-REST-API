@@ -1,0 +1,39 @@
+@baseUrl = http://localhost:3000
+@paymentId = 1
+@paymentMethodId = 1
+@orderId = 1
+
+### List payments
+GET {{baseUrl}}/payments
+
+### Filter payments by order and status
+GET {{baseUrl}}/payments?orderId={{orderId}}&status=pending
+
+### Get one payment
+GET {{baseUrl}}/payments/{{paymentId}}
+
+### Create payment
+POST {{baseUrl}}/payments
+Content-Type: application/json
+
+{
+  "provider": "Mercado Pago",
+  "providerPaymentId": "pay_test_123456",
+  "methodType": "card",
+  "amount": 110.00,
+  "currency": "BRL",
+  "paymentMethodId": 1,
+  "orderId": 1
+}
+
+### Update payment status
+PATCH {{baseUrl}}/payments/{{paymentId}}
+Content-Type: application/json
+
+{
+  "status": "paid",
+  "paidAt": "2026-11-16T11:00:00.000Z"
+}
+
+### Delete payment
+DELETE {{baseUrl}}/payments/{{paymentId}}

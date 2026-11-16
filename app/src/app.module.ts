@@ -8,6 +8,7 @@ import { CouponsModule } from '@/modules/coupons/coupons.module';
 import { CouponImagesModule } from '@/modules/coupon-images/coupon-images.module';
 import { CouponUsagesModule } from '@/modules/coupon-usages/coupon-usages.module';
 import { CouponProductsModule } from '@/modules/coupon-products/coupon-products.module';
+import { CouponCategoriesModule } from '@/modules/coupon-categories/coupon-categories.module';
 import { FavoritesModule } from '@/modules/favorites/favorites.module';
 import { OrderAddressesModule } from '@/modules/order-addresses/order-addresses.module';
 import { OrderItemsModule } from '@/modules/order-items/order-items.module';
@@ -46,6 +47,7 @@ import { AppService } from './app.service';
     CouponImagesModule,
     CouponUsagesModule,
     CouponProductsModule,
+    CouponCategoriesModule,
     FavoritesModule,
     OrdersModule,
     OrderAddressesModule,

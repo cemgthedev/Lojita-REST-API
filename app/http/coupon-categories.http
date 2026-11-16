@@ -1,0 +1,32 @@
+@baseUrl = http://localhost:3000
+@couponId = 1
+@categoryId = 2
+
+### List coupon-category associations
+GET {{baseUrl}}/coupon-categories
+
+### Filter associations by coupon
+GET {{baseUrl}}/coupon-categories?couponId={{couponId}}
+
+### Get association by composite key
+GET {{baseUrl}}/coupon-categories/{{couponId}}/{{categoryId}}
+
+### Associate category with coupon
+POST {{baseUrl}}/coupon-categories
+Content-Type: application/json
+
+{
+  "couponId": 1,
+  "categoryId": 2
+}
+
+### Update association
+PATCH {{baseUrl}}/coupon-categories/{{couponId}}/{{categoryId}}
+Content-Type: application/json
+
+{
+  "categoryId": 2
+}
+
+### Remove association
+DELETE {{baseUrl}}/coupon-categories/{{couponId}}/{{categoryId}}

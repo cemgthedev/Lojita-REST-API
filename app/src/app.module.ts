@@ -9,6 +9,7 @@ import { OrderAddressesModule } from '@/modules/order-addresses/order-addresses.
 import { OrderItemsModule } from '@/modules/order-items/order-items.module';
 import { OrderSellersModule } from '@/modules/order-sellers/order-sellers.module';
 import { OrdersModule } from '@/modules/orders/orders.module';
+import { PaymentsModule } from '@/modules/payments/payments.module';
 import { PaymentMethodsModule } from '@/modules/payment-methods/payment-methods.module';
 import { ProductsModule } from '@/modules/products/products.module';
 import { SpecificationsModule } from '@/modules/specifications/specifications.module';
@@ -42,6 +43,7 @@ import { AppService } from './app.service';
     OrderAddressesModule,
     OrderItemsModule,
     OrderSellersModule,
+    PaymentsModule,
     PaymentMethodsModule,
     ProductsModule,
     SpecificationsModule,

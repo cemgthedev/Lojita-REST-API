@@ -9,7 +9,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-@Entity('coupon_products')
+@Entity()
 export class CouponProduct {
   @PrimaryColumn({ type: 'int' })
   couponId!: number;

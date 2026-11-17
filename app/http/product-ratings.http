@@ -1,0 +1,39 @@
+@baseUrl = http://localhost:3000
+@productRatingId = 1
+
+### List product ratings
+GET {{baseUrl}}/product-ratings
+
+### List product ratings with pagination and product filter
+GET {{baseUrl}}/product-ratings?limit=10&page=1&productId=1
+
+### Get a product rating by ID
+GET {{baseUrl}}/product-ratings/{{productRatingId}}
+
+### Create a product rating
+POST {{baseUrl}}/product-ratings
+Content-Type: application/json
+
+{
+  "average": 4.5,
+  "count": 10,
+  "fiveStarCount": 5,
+  "fourStarCount": 3,
+  "threeStarCount": 1,
+  "twoStarCount": 1,
+  "oneStarCount": 0,
+  "productId": 1
+}
+
+### Update a product rating
+PATCH {{baseUrl}}/product-ratings/{{productRatingId}}
+Content-Type: application/json
+
+{
+  "average": 4.7,
+  "count": 12,
+  "fiveStarCount": 7
+}
+
+### Delete a product rating
+DELETE {{baseUrl}}/product-ratings/{{productRatingId}}

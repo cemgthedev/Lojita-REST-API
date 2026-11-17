@@ -22,6 +22,7 @@ import { PaymentsModule } from '@/modules/payments/payments.module';
 import { PaymentMethodsModule } from '@/modules/payment-methods/payment-methods.module';
 import { ProductsModule } from '@/modules/products/products.module';
 import { ProductReviewsModule } from '@/modules/product-reviews/product-reviews.module';
+import { ProductRatingsModule } from '@/modules/product-ratings/product-ratings.module';
 import { SpecificationsModule } from '@/modules/specifications/specifications.module';
 import { VariantAttributesModule } from '@/modules/variant-attributes/variant-attributes.module';
 import { VariantImagesModule } from '@/modules/variant-images/variant-images.module';
@@ -66,6 +67,7 @@ import { AppService } from './app.service';
     PaymentMethodsModule,
     ProductsModule,
     ProductReviewsModule,
+    ProductRatingsModule,
     SpecificationsModule,
     VariantsModule,
     VariantAttributesModule,

@@ -1,0 +1,30 @@
+@baseUrl = http://localhost:3000
+@chatId = 1
+
+### List chats
+GET {{baseUrl}}/chats
+
+### List chats with pagination and filters
+GET {{baseUrl}}/chats?limit=10&page=1&type=support
+
+### Get a chat by ID
+GET {{baseUrl}}/chats/{{chatId}}
+
+### Create a chat
+POST {{baseUrl}}/chats
+Content-Type: application/json
+
+{
+  "type": "support"
+}
+
+### Update a chat
+PATCH {{baseUrl}}/chats/{{chatId}}
+Content-Type: application/json
+
+{
+  "type": "order"
+}
+
+### Delete a chat
+DELETE {{baseUrl}}/chats/{{chatId}}

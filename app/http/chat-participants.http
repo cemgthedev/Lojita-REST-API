@@ -1,0 +1,32 @@
+@baseUrl = http://localhost:3000
+@chatParticipantId = 1
+
+### List chat participants
+GET {{baseUrl}}/chat-participants
+
+### List chat participants with pagination and filters
+GET {{baseUrl}}/chat-participants?limit=10&page=1&chatId=1&userId=1&role=support
+
+### Get a chat participant by ID
+GET {{baseUrl}}/chat-participants/{{chatParticipantId}}
+
+### Create a chat participant
+POST {{baseUrl}}/chat-participants
+Content-Type: application/json
+
+{
+  "role": "support",
+  "chatId": 1,
+  "userId": 2
+}
+
+### Update a chat participant
+PATCH {{baseUrl}}/chat-participants/{{chatParticipantId}}
+Content-Type: application/json
+
+{
+  "role": "customer"
+}
+
+### Delete a chat participant
+DELETE {{baseUrl}}/chat-participants/{{chatParticipantId}}

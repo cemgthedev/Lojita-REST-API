@@ -1,0 +1,32 @@
+@baseUrl = http://localhost:3000
+@messageId = 1
+
+### List messages
+GET {{baseUrl}}/messages
+
+### List messages with pagination and filters
+GET {{baseUrl}}/messages?limit=10&page=1&chatId=1&senderId=1&content=ol%C3%A1
+
+### Get a message by ID
+GET {{baseUrl}}/messages/{{messageId}}
+
+### Create a message
+POST {{baseUrl}}/messages
+Content-Type: application/json
+
+{
+  "content": "Olá, tudo bem?",
+  "chatId": 1,
+  "senderId": 2
+}
+
+### Update a message
+PATCH {{baseUrl}}/messages/{{messageId}}
+Content-Type: application/json
+
+{
+  "content": "Olá, tudo bem sim!"
+}
+
+### Delete a message
+DELETE {{baseUrl}}/messages/{{messageId}}

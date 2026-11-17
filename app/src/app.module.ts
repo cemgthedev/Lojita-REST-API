@@ -6,6 +6,7 @@ import { CartItemsModule } from '@/modules/cart-items/cart-items.module';
 import { CartsModule } from '@/modules/carts/carts.module';
 import { ChatParticipantsModule } from '@/modules/chat-participants/chat-participants.module';
 import { ChatsModule } from '@/modules/chats/chats.module';
+import { MessagesModule } from '@/modules/messages/messages.module';
 import { CouponsModule } from '@/modules/coupons/coupons.module';
 import { CouponImagesModule } from '@/modules/coupon-images/coupon-images.module';
 import { CouponUsagesModule } from '@/modules/coupon-usages/coupon-usages.module';
@@ -47,6 +48,7 @@ import { AppService } from './app.service';
     CartsModule,
     ChatsModule,
     ChatParticipantsModule,
+    MessagesModule,
     CouponsModule,
     CouponImagesModule,
     CouponUsagesModule,

@@ -4,6 +4,7 @@ import { AttributesValuesModule } from '@/modules/attributes-values/attributes-v
 import { CardsModule } from '@/modules/cards/cards.module';
 import { CartItemsModule } from '@/modules/cart-items/cart-items.module';
 import { CartsModule } from '@/modules/carts/carts.module';
+import { ChatsModule } from '@/modules/chats/chats.module';
 import { CouponsModule } from '@/modules/coupons/coupons.module';
 import { CouponImagesModule } from '@/modules/coupon-images/coupon-images.module';
 import { CouponUsagesModule } from '@/modules/coupon-usages/coupon-usages.module';
@@ -43,6 +44,7 @@ import { AppService } from './app.service';
     CardsModule,
     CartItemsModule,
     CartsModule,
+    ChatsModule,
     CouponsModule,
     CouponImagesModule,
     CouponUsagesModule,

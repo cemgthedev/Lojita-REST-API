@@ -1,0 +1,36 @@
+@baseUrl = http://localhost:3000
+@supportTicketId = 1
+
+### List support tickets
+GET {{baseUrl}}/support-tickets
+
+### List support tickets with pagination and filters
+GET {{baseUrl}}/support-tickets?limit=10&page=1&status=open&priority=high&origin=chat&requesterId=1
+
+### Get a support ticket by ID
+GET {{baseUrl}}/support-tickets/{{supportTicketId}}
+
+### Create a support ticket
+POST {{baseUrl}}/support-tickets
+Content-Type: application/json
+
+{
+  "origin": "customer_portal",
+  "motive": "order",
+  "priority": "normal",
+  "status": "new",
+  "description": "Cliente precisa de ajuda com o pedido.",
+  "requesterId": 1
+}
+
+### Update a support ticket
+PATCH {{baseUrl}}/support-tickets/{{supportTicketId}}
+Content-Type: application/json
+
+{
+  "status": "in_progress",
+  "priority": "high"
+}
+
+### Delete a support ticket
+DELETE {{baseUrl}}/support-tickets/{{supportTicketId}}

@@ -96,7 +96,7 @@ describe('UsersController', () => {
       const error = new Error('Falha ao consultar usuários');
       usersService.query.mockRejectedValue(error);
 
-      await expect(controller.findAll({})).rejects.toBe(error);
+      await expect(controller.findAll({} as QueryUserDto)).rejects.toBe(error);
     });
   });
 

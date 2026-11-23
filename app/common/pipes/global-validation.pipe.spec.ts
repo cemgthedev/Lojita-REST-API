@@ -75,7 +75,7 @@ describe('GlobalValidationPipe', () => {
           name: 'User',
           email: 'user@example.com',
           password: 'secret',
-          role: 'admin',
+          unexpected: 'value',
         },
         {
           type: 'body',
@@ -88,8 +88,8 @@ describe('GlobalValidationPipe', () => {
     }
 
     expect(exception).toBeInstanceOf(BadRequestException);
-    expect(getDetails(exception)?.role).toContain(
-      'property role should not exist',
+    expect(getDetails(exception)?.unexpected).toContain(
+      'property unexpected should not exist',
     );
   });
 });

@@ -1,23 +1,6 @@
 
-# This workflow:
-# 1. Checks out the repository.
-# 2. Sets up multiple Node.js versions.
-# 3. Restores the npm dependency cache.
-# 4. Performs a clean dependency installation.
-# 5. Builds the application.
-# 6. Runs the automated tests.
-#
-# IMPORTANT:
-# A package-lock.json file must exist in the repository root.
-# It is required by npm ci and by the npm cache configuration.
-#
-# For more information:
-# https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
-
 name: Back-end CI
 
-# Run the workflow when code is pushed to main
-# or when a pull request targets main.
 on:
   push:
     branches: ["main"]
@@ -30,33 +13,31 @@ jobs:
     name: Build and Test (Node.js ${{ matrix.node-version }})
     runs-on: ubuntu-latest
 
-    # Run the workflow across different Node.js versions.
+    defaults:
+      run:
+        working-directory: ./app
+
     strategy:
       fail-fast: false
       matrix:
         node-version: [22.x, 24.x]
 
     steps:
-      # Download the repository source code.
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Install the selected Node.js version and configure npm caching.
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
           cache: npm
-          cache-dependency-path: package-lock.json
+          cache-dependency-path: app/package-lock.json
 
-      # Install dependencies using the committed lockfile.
       - name: Install dependencies
         run: npm ci
 
-      # Build the application if a build script exists.
       - name: Build application
         run: npm run build --if-present
 
-      # Execute automated tests.
       - name: Run tests
         run: npm test

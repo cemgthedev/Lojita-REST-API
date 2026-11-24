@@ -1,16 +1,23 @@
-
 name: Back-end CI
 
 on:
   push:
-    branches: ["main"]
-
+    branches:
+      - main
   pull_request:
-    branches: ["main"]
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: back-end-ci-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  build:
-    name: Build and Test (Node.js ${{ matrix.node-version }})
+  build-and-test:
+    name: Build and test (Node.js ${{ matrix.node-version }})
     runs-on: ubuntu-latest
 
     defaults:
@@ -20,7 +27,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node-version: [22.x, 24.x]
+        node-version:
+          - 22.x
+          - 24.x
 
     steps:
       - name: Checkout repository
@@ -37,7 +46,7 @@ jobs:
         run: npm ci
 
       - name: Build application
-        run: npm run build --if-present
+        run: npm run build
 
-      - name: Run tests
-        run: npm test
+      - name: Run unit tests
+        run: npx jest --runInBand

@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { DynamicModule, Module } from '@nestjs/common';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 
@@ -7,13 +8,14 @@ import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 export const databases = {
   production: {
     type: 'postgres',
-    host: 'localhost',
-    port: 5432,
-    database: 'lojita',
-    username: 'postgres',
-    password: '12345678',
-    autoLoadEntities: false,
-    synchronize: false,
+    host: process.env.DB_HOST ?? 'localhost',
+    port: Number(process.env.DB_PORT ?? 5432),
+    database: process.env.DB_DATABASE ?? 'lojita',
+    username: process.env.DB_USERNAME ?? 'postgres',
+    password: process.env.DB_PASSWORD ?? 'change-me',
+    autoLoadEntities:
+      (process.env.DB_AUTO_LOAD_ENTITIES ?? 'false') === 'true',
+    synchronize: (process.env.DB_SYNCHRONIZE ?? 'false') === 'true',
   },
   test: {
     type: 'postgres',
